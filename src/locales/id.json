@@ -1,0 +1,119 @@
+{
+  "navbar": {
+    "title": "BioSecureLand",
+    "maps": "Peta",
+    "dashboard": "Dasbor",
+    "search": "Cari..."
+  },
+  "welcomePage": {
+    "title": {
+      "first": "Pemantauan",
+      "highlight": "Zoonosis"
+    },
+    "description": "Manfaatkan kecerdasan geospasial canggih untuk memprediksi, mencegah, dan mengurangi risiko penularan penyakit zoonosis di seluruh ekosistem global.",
+    "exploreButton": "Jelajahi Sekarang",
+    "pauseVisualization": "Jeda Visualisasi",
+    "resumeVisualization": "Lanjutkan Visualisasi"
+  },
+
+  "productsAndServices": {
+    "title": "Produk & Layanan Kami",
+    "services": [
+      {
+        "icon": "fas fa-globe-americas",
+        "title": "Pemetaan Penyakit Global",
+        "description": "Pelacakan geospasial canggih untuk penyebaran potensi penyakit zoonosis di seluruh benua."
+      },
+      {
+        "icon": "fas fa-microscope",
+        "title": "Analitika Prediktif",
+        "description": "Pemodelan prediktif berbasis AI untuk memperkirakan risiko transmisi penyakit."
+      },
+      {
+        "icon": "fas fa-chart-line",
+        "title": "Pemantauan Real-time",
+        "description": "Pengawasan berkelanjutan dan pembaruan real-time tentang ancaman zoonosis yang muncul."
+      }
+    ]
+  },
+  "solutions": {
+    "title": "Solusi Inovatif",
+    "solutions": [
+      {
+        "title": "Prediksi Transmisi Penyakit",
+        "description": "Algoritma canggih untuk memprediksi rute dan titik panas transmisi penyakit potensial.",
+        "buttonText": "Pelajari Lebih Lanjut"
+      },
+      {
+        "title": "Penilaian Risiko Ekosistem",
+        "description": "Analisis komprehensif faktor ekologis yang berkontribusi pada munculnya penyakit zoonosis.",
+        "buttonText": "Pelajari Lebih Lanjut"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Hubungi Kami",
+    "form": {
+      "nameLabel": "Nama",
+      "emailLabel": "Email",
+      "messageLabel": "Pesan",
+      "submitButton": "Kirim Pesan"
+    },
+    "contactInfo": {
+      "address": "123 Pusat Penelitian Zoonosis, Distrik Kesehatan Global",
+      "phone": "+62 (555) 123-4567",
+      "email": "kontak@solusi-zoonosis.com"
+    },
+    "businessHours": {
+      "title": "Jam Kerja",
+      "weekdays": "Senin - Jumat: 09:00 - 17:00",
+      "saturday": "Sabtu: 10:00 - 14:00",
+      "sunday": "Minggu: Tutup"
+    }
+  },
+  "faq": {
+    "title": "Pertanyaan yang Sering Diajukan",
+    "questions": [
+      {
+        "question": "Apa itu Pemantauan Zoonosis?",
+        "answer": "Pemantauan Zoonosis adalah sistem canggih untuk melacak dan memprediksi potensi transmisi penyakit antara hewan dan manusia menggunakan teknologi geospasial terkini."
+      },
+      {
+        "question": "Seberapa akurat model prediktif Anda?",
+        "answer": "Model berbasis AI kami memanfaatkan data ekstensif dari basis data kesehatan global, memberikan akurasi hingga 85% dalam memprediksi risiko transmisi penyakit potensial."
+      },
+      {
+        "question": "Bisakah sistem Anda mendeteksi penyakit yang muncul?",
+        "answer": "Ya, sistem pemantauan real-time kami secara berkelanjutan menganalisis data kesehatan global untuk mengidentifikasi ancaman zoonosis potensial sebelum menyebar luas."
+      },
+      {
+        "question": "Seberapa sering data diperbarui?",
+        "answer": "Sistem kami memperbarui data secara real-time, dengan laporan komprehensif yang dihasilkan setiap hari dan penilaian risiko utama diperbarui mingguan."
+      }
+    ]
+  },
+
+  "footer": {
+    "companyName": "BioSecureLand",
+    "companyDescription": "Inteligensi geospasial canggih untuk memprediksi dan mencegah penularan penyakit zoonosis.",
+    "quickLinks": {
+      "title": "Tautan Cepat",
+      "home": "Beranda",
+      "products": "Produk",
+      "solutions": "Solusi", 
+      "contact": "Kontak"
+    },
+    "connect": {
+      "title": "Sambungkan",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn",
+      "github": "GitHub"
+    },
+    "newsletter": {
+      "title": "Buletin",
+      "placeholder": "Email Anda",
+      "submit": "Berlangganan"
+    },
+    "copyright": "© 2025 BioSecureLand. Seluruh Hak Dilindungi."
+  }
+}
