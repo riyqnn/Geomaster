@@ -7,6 +7,8 @@ import { ProductsAndServices, Solutions, Contact, FAQ } from "./Components/Conte
 import Footer from "./Components/Footer";
 import MapsLayout from "./Components/MapsLayout";
 import Dashboard from "./Pages/Dashboard";
+import TabelSampah from "./Components/Table";
+import TestPage  from "./Components/testpage";
 
 function App() {
   const HomePage = () => {
@@ -17,8 +19,8 @@ function App() {
           <Home />
           <ProductsAndServices />
           <Solutions />
-          <Contact />
           <FAQ />
+          <Contact />
           <Footer />
         </div>
       </div>
@@ -29,6 +31,12 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
+
+        <Route path="/test" element={<>
+          <Navbar />
+          <TestPage />
+          <Footer/>
+        </>} />
         
         {/* Map Routes */}
         <Route path="/maps" element={<>
@@ -73,6 +81,7 @@ function App() {
           <div className="bg-gradient-to-br from-gray-900 via-black to-blue-950">
             <Navbar />
             <Dashboard />
+            <Footer/>
           </div>
         } 
       />

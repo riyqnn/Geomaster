@@ -16,82 +16,106 @@
       "resumeVisualization": "Resume Visualization"
     },
 
-    "productsAndServices": {
-      "title": "Our Products & Services",
-      "services": [
-        {
-          "icon": "fas fa-globe-americas",
-          "title": "Global Disease Mapping",
-          "description": "Advanced geospatial tracking of potential zoonotic disease spread across continents."
-        },
-        {
-          "icon": "fas fa-microscope",
-          "title": "Predictive Analytics",
-          "description": "AI-powered predictive modeling to forecast potential disease transmission risks."
-        },
-        {
-          "icon": "fas fa-chart-line",
-          "title": "Real-time Monitoring",
-          "description": "Continuous surveillance and real-time updates on emerging zoonotic threats."
-        }
-      ]
+   "productsAndServices": {
+    "title": {
+      "part1": "Smart ",
+      "highlight": "Spatial Solutions",
+      "part2": "for a Safer Biosphere"
     },
-    "solutions": {
-      "title": "Innovative Solutions",
-      "solutions": [
-        {
-          "title": "Disease Transmission Prediction",
-          "description": "Advanced algorithms to predict potential disease transmission routes and hotspots.",
-          "buttonText": "Learn More"
-        },
-        {
-          "title": "Ecosystem Risk Assessment",
-          "description": "Comprehensive analysis of ecological factors contributing to zoonotic disease emergence.",
-          "buttonText": "Learn More"
-        }
-      ]
-    },
-    "contact": {
-      "title": "Contact Us",
-      "form": {
-        "nameLabel": "Name",
-        "emailLabel": "Email",
-        "messageLabel": "Message",
-        "submitButton": "Send Message"
+    "subtitle": "Cutting-edge Web GIS technologies designed to monitor and mitigate zoonotic disease risks.",
+    "mobileIndicator": "Scroll for more",
+    "learnMore": "Learn More",
+    "services": [
+      {
+        "title": "Zoonosis Risk Mapping",
+        "icon": "fas fa-map-marked-alt",
+        "description": "Interactive GIS-based mapping to identify and visualize high-risk zoonotic disease zones."
       },
-      "contactInfo": {
-        "address": "123 Zoonotic Research Center, Global Health District",
-        "phone": "+1 (555) 123-4567",
-        "email": "contact@zoonoticsolutions.com"
+      {
+        "title": "AI-Powered Outbreak Prediction",
+        "icon": "fas fa-brain",
+        "description": "Advanced AI models to predict potential zoonotic outbreaks based on environmental and human factors."
       },
-      "businessHours": {
-        "title": "Business Hours",
-        "weekdays": "Monday - Friday: 9:00 AM - 5:00 PM",
-        "saturday": "Saturday: 10:00 AM - 2:00 PM",
-        "sunday": "Sunday: Closed"
+      {
+        "title": "Educational Tools",
+        "icon": "fas fa-book-open",
+        "description": "Resources and tools to educate communities and stakeholders about zoonotic disease risks."
       }
+    ]
+  },
+  "solutions": {
+    "solutions": [
+      {
+        "title": "BiosecureLand Web GIS Platform",
+        "description": "A comprehensive Web GIS platform integrating real-time data, AI predictions, and risk mapping to support zoonosis prevention and policy-making.",
+        "buttonText": "Explore Platform"
+      },
+      {
+        "title": "Ecosystem Risk Analytics",
+        "description": "Transform environmental and demographic data into actionable insights with advanced analytics tailored to zoonotic risk management.",
+        "buttonText": "See How It Works"
+      }
+    ],
+    "heading": {
+      "subtitle": "Next Generation",
+      "title_part1": "Zoonosis",
+      "title_part2": "Solutions",
+      "description": "Harnessing Web GIS to prevent zoonotic diseases and protect ecosystems"
+    }
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "contactInfo": {
+      "address": "Biosecure Innovation Hub, Global City",
+      "phone": "+1 (555) 987-6543",
+      "email": "info@biosecuregis.org"
     },
-    "faq": {
-      "title": "Frequently Asked Questions",
-      "questions": [
-        {
-          "question": "What is Zoonotic Monitoring?",
-          "answer": "Zoonotic Monitoring is an advanced system for tracking and predicting potential disease transmission between animals and humans using cutting-edge geospatial technology."
-        },
-        {
-          "question": "How accurate are your predictive models?",
-          "answer": "Our AI-powered models leverage extensive data from global health databases, providing up to 85% accuracy in predicting potential disease transmission risks."
-        },
-        {
-          "question": "Can your system detect emerging diseases?",
-          "answer": "Yes, our real-time monitoring system continuously analyzes global health data to identify potential emerging zoonotic threats before they become widespread."
-        },
-        {
-          "question": "How often is the data updated?",
-          "answer": "Our system updates data in real-time, with comprehensive reports generated daily and major risk assessments updated weekly."
-        }
-      ]
+    "businessHours": {
+      "weekdays": "Monday–Friday: 8AM–5PM",
+      "saturday": "Saturday: By Appointment",
+      "sunday": "Sunday: Closed"
     },
+    "form": {
+      "nameLabel": "Your Name",
+      "emailLabel": "Email Address",
+      "messageLabel": "Your Message",
+      "submitButton": "Send Message"
+    }
+  },
+  "faq": {
+    "questions": [
+      {
+        "question": "What is the BiosecureLand Web GIS Platform?",
+        "answer": "It’s a Web GIS-based system designed to map, monitor, and predict zoonotic disease risks by analyzing land use, wildlife, and human activity data."
+      },
+      {
+        "question": "Who can benefit from this platform?",
+        "answer": "Governments, international organizations, private companies, researchers, and communities can use the platform for risk mitigation and education."
+      },
+      {
+        "question": "How accurate are the AI predictions?",
+        "answer": "Our AI models leverage real-time data and historical patterns, achieving high accuracy, which improves as more data is integrated."
+      },
+      {
+        "question": "Can the platform integrate with existing systems?",
+        "answer": "Yes, our platform supports APIs and connectors to integrate with governmental, environmental, and health databases."
+      },
+      {
+        "question": "What kind of support is provided after implementation?",
+        "answer": "We offer 24/7 technical support, regular updates, training for users, and data integration assistance."
+      }
+    ],
+    "heading": {
+      "subtitle": "Got Questions?",
+      "title_part1": "Frequently Asked",
+      "title_part2": "Questions",
+      "description": "Learn more about our Web GIS solutions, features, and support for zoonosis prevention."
+    },
+    "cta": {
+      "text": "Still have questions?",
+      "button": "Contact Our Team"
+    }
+  },
 
     "footer": {
     "companyName": "BioSecureLand",

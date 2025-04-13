@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+.animate-spin-slow {
+    animation: spin 20s linear infinite;
+  }
+  
+  @media (max-width: 640px) {
+    .text-4xl {
+      font-size: 2rem;
+    }
+    .text-xl {
+      font-size: 1.125rem;
+    }
+  }
+

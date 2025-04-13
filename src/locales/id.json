@@ -16,81 +16,105 @@
     "resumeVisualization": "Lanjutkan Visualisasi"
   },
 
-  "productsAndServices": {
-    "title": "Produk & Layanan Kami",
+ "productsAndServices": {
+    "title": {
+      "part1": "Solusi",
+      "highlight": "Spasial Cerdas",
+      "part2": "untuk Biosfer yang Lebih Aman"
+    },
+    "subtitle": "Teknologi Web GIS mutakhir untuk memantau dan mengurangi risiko penyakit zoonosis.",
+    "mobileIndicator": "Gulir untuk lebih banyak",
+    "learnMore": "Pelajari Lebih Lanjut",
     "services": [
       {
-        "icon": "fas fa-globe-americas",
-        "title": "Pemetaan Penyakit Global",
-        "description": "Pelacakan geospasial canggih untuk penyebaran potensi penyakit zoonosis di seluruh benua."
+        "title": "Pemetaan Risiko Zoonosis",
+        "icon": "fas fa-map-marked-alt",
+        "description": "Pemetaan berbasis GIS interaktif untuk mengidentifikasi dan memvisualisasikan zona berisiko tinggi penyakit zoonosis."
       },
       {
-        "icon": "fas fa-microscope",
-        "title": "Analitika Prediktif",
-        "description": "Pemodelan prediktif berbasis AI untuk memperkirakan risiko transmisi penyakit."
+        "title": "Prediksi Wabah Berbasis AI",
+        "icon": "fas fa-brain",
+        "description": "Model AI canggih untuk memprediksi potensi wabah zoonosis berdasarkan faktor lingkungan dan manusia."
       },
       {
-        "icon": "fas fa-chart-line",
-        "title": "Pemantauan Real-time",
-        "description": "Pengawasan berkelanjutan dan pembaruan real-time tentang ancaman zoonosis yang muncul."
+        "title": "Alat Edukasi",
+        "icon": "fas fa-book-open",
+        "description": "Sumber daya dan alat untuk mengedukasi masyarakat dan pemangku kepentingan tentang risiko penyakit zoonosis."
       }
     ]
   },
   "solutions": {
-    "title": "Solusi Inovatif",
     "solutions": [
       {
-        "title": "Prediksi Transmisi Penyakit",
-        "description": "Algoritma canggih untuk memprediksi rute dan titik panas transmisi penyakit potensial.",
-        "buttonText": "Pelajari Lebih Lanjut"
+        "title": "Platform Web GIS BiosecureLand",
+        "description": "Platform Web GIS komprehensif yang mengintegrasikan data real-time, prediksi AI, dan pemetaan risiko untuk mendukung pencegahan zoonosis dan pengambilan kebijakan.",
+        "buttonText": "Jelajahi Platform"
       },
       {
-        "title": "Penilaian Risiko Ekosistem",
-        "description": "Analisis komprehensif faktor ekologis yang berkontribusi pada munculnya penyakit zoonosis.",
-        "buttonText": "Pelajari Lebih Lanjut"
+        "title": "Analitik Risiko Ekosistem",
+        "description": "Ubah data lingkungan dan demografi menjadi wawasan yang dapat ditindaklanjuti dengan analitik yang disesuaikan untuk pengelolaan risiko zoonosis.",
+        "buttonText": "Lihat Cara Kerjanya"
       }
-    ]
+    ],
+    "heading": {
+      "subtitle": "Generasi Baru",
+      "title_part1": "Solusi",
+      "title_part2": "Zoonosis",
+      "description": "Memanfaatkan Web GIS untuk mencegah penyakit zoonosis dan melindungi ekosistem"
+    }
   },
   "contact": {
     "title": "Hubungi Kami",
-    "form": {
-      "nameLabel": "Nama",
-      "emailLabel": "Email",
-      "messageLabel": "Pesan",
-      "submitButton": "Kirim Pesan"
-    },
     "contactInfo": {
-      "address": "123 Pusat Penelitian Zoonosis, Distrik Kesehatan Global",
-      "phone": "+62 (555) 123-4567",
-      "email": "kontak@solusi-zoonosis.com"
+      "address": "Pusat Inovasi Biosecure, Kota Global",
+      "phone": "+62 (21) 123-4567",
+      "email": "info@biosecuregis.id"
     },
     "businessHours": {
-      "title": "Jam Kerja",
-      "weekdays": "Senin - Jumat: 09:00 - 17:00",
-      "saturday": "Sabtu: 10:00 - 14:00",
+      "weekdays": "Senin–Jumat: 08.00–17.00",
+      "saturday": "Sabtu: Berdasarkan Janji",
       "sunday": "Minggu: Tutup"
+    },
+    "form": {
+      "nameLabel": "Nama Anda",
+      "emailLabel": "Alamat Email",
+      "messageLabel": "Pesan Anda",
+      "submitButton": "Kirim Pesan"
     }
   },
   "faq": {
-    "title": "Pertanyaan yang Sering Diajukan",
     "questions": [
       {
-        "question": "Apa itu Pemantauan Zoonosis?",
-        "answer": "Pemantauan Zoonosis adalah sistem canggih untuk melacak dan memprediksi potensi transmisi penyakit antara hewan dan manusia menggunakan teknologi geospasial terkini."
+        "question": "Apa itu Platform Web GIS BiosecureLand?",
+        "answer": "Ini adalah sistem berbasis Web GIS yang dirancang untuk memetakan, memantau, dan memprediksi risiko penyakit zoonosis dengan menganalisis data penggunaan lahan, satwa liar, dan aktivitas manusia."
       },
       {
-        "question": "Seberapa akurat model prediktif Anda?",
-        "answer": "Model berbasis AI kami memanfaatkan data ekstensif dari basis data kesehatan global, memberikan akurasi hingga 85% dalam memprediksi risiko transmisi penyakit potensial."
+        "question": "Siapa yang dapat memanfaatkan platform ini?",
+        "answer": "Pemerintah, organisasi internasional, perusahaan swasta, peneliti, dan masyarakat dapat menggunakan platform ini untuk mitigasi risiko dan edukasi."
       },
       {
-        "question": "Bisakah sistem Anda mendeteksi penyakit yang muncul?",
-        "answer": "Ya, sistem pemantauan real-time kami secara berkelanjutan menganalisis data kesehatan global untuk mengidentifikasi ancaman zoonosis potensial sebelum menyebar luas."
+        "question": "Seberapa akurat prediksi AI-nya?",
+        "answer": "Model AI kami memanfaatkan data real-time dan pola historis, menghasilkan akurasi tinggi yang terus meningkat seiring integrasi data lebih banyak."
       },
       {
-        "question": "Seberapa sering data diperbarui?",
-        "answer": "Sistem kami memperbarui data secara real-time, dengan laporan komprehensif yang dihasilkan setiap hari dan penilaian risiko utama diperbarui mingguan."
+        "question": "Apakah platform ini dapat terintegrasi dengan sistem yang sudah ada?",
+        "answer": "Ya, platform kami mendukung API dan konektor untuk berintegrasi dengan basis data pemerintahan, lingkungan, dan kesehatan."
+      },
+      {
+        "question": "Dukungan apa yang diberikan setelah implementasi?",
+        "answer": "Kami menyediakan dukungan teknis 24/7, pembaruan rutin, pelatihan pengguna, dan bantuan integrasi data."
       }
-    ]
+    ],
+    "heading": {
+      "subtitle": "Punya Pertanyaan?",
+      "title_part1": "Pertanyaan yang Sering",
+      "title_part2": "Diajukan",
+      "description": "Pelajari lebih lanjut tentang solusi Web GIS kami, fitur, dan dukungan untuk pencegahan zoonosis."
+    },
+    "cta": {
+      "text": "Masih ada pertanyaan?",
+      "button": "Hubungi Tim Kami"
+    }
   },
 
   "footer": {
