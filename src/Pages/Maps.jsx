@@ -3,7 +3,7 @@ import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import Search from "../Components/Search";
 import Sampah from "../Layers/sampah";
-import Jumlah from "../Layers/jumlah";
+import Jumlah from "../Layers/Jumlah";
 import UdaraLayer from "../Layers/udara";
 import Zoonosis from "../Layers/zoonosis";
 
