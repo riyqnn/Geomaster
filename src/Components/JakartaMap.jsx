@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { scaleLinear } from 'd3-scale';
 import { motion } from 'framer-motion';
 
 function JakartaMap({ selectedRegion }) {
+  const { t } = useTranslation();
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
   const layersRef = useRef({});
@@ -13,26 +15,38 @@ function JakartaMap({ selectedRegion }) {
   const [isInitialLoad, setIsInitialLoad] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
+  // Map translated region names to English keys
+  const regionNameMap = useMemo(() => ({
+    [t('regions.eastJakarta')]: 'East Jakarta',
+    [t('regions.northJakarta')]: 'North Jakarta',
+    [t('regions.southJakarta')]: 'South Jakarta',
+    [t('regions.westJakarta')]: 'West Jakarta',
+    [t('regions.centralJakarta')]: 'Central Jakarta'
+  }), [t]);
+
+  // Normalize selectedRegion to English key
+  const normalizedRegion = regionNameMap[selectedRegion] || 'East Jakarta'; // Fallback to East Jakarta
+
   // GeoServer endpoints
   const regionEndpoints = useMemo(() => ({
     'East Jakarta': {
-      primary: 'http://localhost:8080/geoserver/jaktim/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=jaktim%3Ajaktim&maxFeatures=50&outputFormat=application%2Fjson',
+      primary: 'https://cdn.jsdelivr.net/gh/riyqnn/geojson-data@main/jaktim.json',
       fallback: '/data/jaktim.json'
     },
     'North Jakarta': {
-      primary: 'http://localhost:8080/geoserver/jakut/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=jakut%3Ajakut&maxFeatures=50&outputFormat=application%2Fjson',
+      primary: 'https://cdn.jsdelivr.net/gh/riyqnn/geojson-data@main/jakut.json',
       fallback: '/data/jakut.json'
     },
     'South Jakarta': {
-      primary: 'http://localhost:8080/geoserver/jaksel/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=jaksel%3Ajaksel&maxFeatures=50&outputFormat=application%2Fjson',
+      primary: 'https://cdn.jsdelivr.net/gh/riyqnn/geojson-data@main/jaksel.json',
       fallback: '/data/jaksel.json'
     },
     'West Jakarta': {
-      primary: 'http://localhost:8080/geoserver/jakbar/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=jakbar%3Ajakbar&maxFeatures=50&outputFormat=application%2Fjson',
+      primary: 'https://cdn.jsdelivr.net/gh/riyqnn/geojson-data@main/jakbar.json',
       fallback: '/data/jakbar.json'
     },
     'Central Jakarta': {
-      primary: 'http://localhost:8080/geoserver/jakpus/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=jakpus%3Ajakpus&maxFeatures=50&outputFormat=application%2Fjson',
+      primary: 'https://cdn.jsdelivr.net/gh/riyqnn/geojson-data@main/jakpus.json',
       fallback: '/data/jakpus.json'
     }
   }), []);
@@ -212,7 +226,7 @@ function JakartaMap({ selectedRegion }) {
 
   // Load region data
   useEffect(() => {
-    if (!mapInstanceRef.current || !selectedRegion) return;
+    if (!mapInstanceRef.current || !normalizedRegion) return;
 
     let isMounted = true;
 
@@ -220,29 +234,33 @@ function JakartaMap({ selectedRegion }) {
       if (!isMounted) return;
       setIsLoading(true);
 
-      const stats = generateRegionStats(selectedRegion);
+      const stats = generateRegionStats(normalizedRegion);
       if (isMounted) setMapStats(stats);
 
-      const endpoints = regionEndpoints[selectedRegion];
+      const endpoints = regionEndpoints[normalizedRegion];
       if (!endpoints) {
-        if (isMounted) setIsLoading(false);
+        console.error(`No endpoints found for region: ${normalizedRegion}`);
+        if (isMounted) {
+          setIsLoading(false);
+          showErrorNotification(`Invalid region: ${selectedRegion}`);
+        }
         return;
       }
 
-      if (layersRef.current[selectedRegion]) {
+      if (layersRef.current[normalizedRegion]) {
         if (!mapInstanceRef.current) return;
         
         Object.keys(layersRef.current).forEach(key => {
-          if (key !== selectedRegion && mapInstanceRef.current?.hasLayer(layersRef.current[key])) {
+          if (key !== normalizedRegion && mapInstanceRef.current?.hasLayer(layersRef.current[key])) {
             mapInstanceRef.current.removeLayer(layersRef.current[key]);
           }
         });
 
-        if (!mapInstanceRef.current.hasLayer(layersRef.current[selectedRegion])) {
-          layersRef.current[selectedRegion].addTo(mapInstanceRef.current);
+        if (!mapInstanceRef.current.hasLayer(layersRef.current[normalizedRegion])) {
+          layersRef.current[normalizedRegion].addTo(mapInstanceRef.current);
         }
 
-        mapInstanceRef.current.fitBounds(layersRef.current[selectedRegion].getBounds(), {
+        mapInstanceRef.current.fitBounds(layersRef.current[normalizedRegion].getBounds(), {
           padding: [20, 20],
           maxZoom: 13,
           animate: true,
@@ -250,7 +268,7 @@ function JakartaMap({ selectedRegion }) {
         });
 
         if (isMounted) {
-          addLegend(mapInstanceRef.current, selectedRegion, stats);
+          addLegend(mapInstanceRef.current, normalizedRegion, stats);
           setIsLoading(false);
         }
         return;
@@ -264,7 +282,7 @@ function JakartaMap({ selectedRegion }) {
         }
 
         if (!response.ok) {
-          throw new Error(`Failed to load data for ${selectedRegion}`);
+          throw new Error(`Failed to load data for ${normalizedRegion}`);
         }
 
         const data = await response.json();
@@ -276,7 +294,7 @@ function JakartaMap({ selectedRegion }) {
           }
         });
 
-        const color = regionColors[selectedRegion];
+        const color = regionColors[normalizedRegion];
 
         const newLayer = L.geoJSON(data, {
           style: {
@@ -305,23 +323,23 @@ function JakartaMap({ selectedRegion }) {
                   <h3>${areaName}</h3>
                   <p class="region-label">${selectedRegion}</p>
                   <div class="risk-meter">
-                    <div class="risk-label">Risk Level: ${districtRisk < 33 ? 'Low' : districtRisk < 66 ? 'Medium' : 'High'}</div>
+                    <div class="risk-label">Risk Level: ${districtRisk < 33 ? t('map.risk.low') : districtRisk < 66 ? t('map.risk.medium') : t('map.risk.high')}</div>
                     <div class="risk-bar">
                       <div class="risk-fill" style="width: ${districtRisk}%; background: ${riskColor};"></div>
                     </div>
                   </div>
                   <div class="popup-stats">
                     <div class="stat">
-                      <span class="label">Air Quality Index</span>
+                      <span class="label">${t('tabData.airQualityIndex.stats.ispu')}</span>
                       <span class="value">${Math.floor(stats.aqiValue * (0.8 + Math.random() * 0.4))}</span>
                     </div>
                     <div class="stat">
-                      <span class="label">Population</span>
+                      <span class="label">${t('map.metrics.population.label')}</span>
                       <span class="value">${(Math.floor(Math.random() * 300) + 50).toLocaleString()}k</span>
                     </div>
                   </div>
                   <div class="popup-footer">
-                    <span>Last updated: ${new Date().toLocaleDateString()}</span>
+                    <span>${t('map.lastUpdated')}: ${new Date().toLocaleDateString()}</span>
                   </div>
                 </div>
               `;
@@ -367,10 +385,10 @@ function JakartaMap({ selectedRegion }) {
 
         if (!mapInstanceRef.current) return;
         newLayer.addTo(mapInstanceRef.current);
-        layersRef.current[selectedRegion] = newLayer;
+        layersRef.current[normalizedRegion] = newLayer;
 
         if (isMounted) {
-          addLegend(mapInstanceRef.current, selectedRegion, stats);
+          addLegend(mapInstanceRef.current, normalizedRegion, stats);
 
           const bounds = newLayer.getBounds();
           if (bounds.isValid()) {
@@ -385,22 +403,10 @@ function JakartaMap({ selectedRegion }) {
           setIsLoading(false);
         }
       } catch (error) {
-        console.error(`Error loading ${selectedRegion} data:`, error);
+        console.error(`Error loading ${normalizedRegion} data:`, error);
         if (!isMounted || !mapInstanceRef.current) return;
 
-        const errorControl = L.control({ position: 'topright' });
-        errorControl.onAdd = function() {
-          const div = L.DomUtil.create('div', 'map-error-notification');
-          div.innerHTML = `<div>Error loading data for ${selectedRegion}</div>`;
-          setTimeout(() => {
-            if (div.parentNode) {
-              div.parentNode.removeChild(div);
-            }
-          }, 5000);
-          return div;
-        };
-        errorControl.addTo(mapInstanceRef.current);
-
+        showErrorNotification(t('map.errorLoading', { region: selectedRegion }));
         if (isMounted) setIsLoading(false);
       }
     };
@@ -410,7 +416,25 @@ function JakartaMap({ selectedRegion }) {
     return () => {
       isMounted = false;
     };
-  }, [selectedRegion, regionEndpoints, regionColors]);
+  }, [normalizedRegion, regionEndpoints, regionColors, selectedRegion, t]);
+
+  // Show error notification
+  const showErrorNotification = (message) => {
+    if (!mapInstanceRef.current) return;
+
+    const errorControl = L.control({ position: 'topright' });
+    errorControl.onAdd = function() {
+      const div = L.DomUtil.create('div', 'map-error-notification');
+      div.innerHTML = `<div>${message}</div>`;
+      setTimeout(() => {
+        if (div.parentNode) {
+          div.parentNode.removeChild(div);
+        }
+      }, 5000);
+      return div;
+    };
+    errorControl.addTo(mapInstanceRef.current);
+  };
 
   // Add legend
   const addLegend = (map, region, stats) => {
@@ -430,22 +454,22 @@ function JakartaMap({ selectedRegion }) {
         div.innerHTML = ``;
       } else {
         div.innerHTML = `
-          <h4>${region} Risk Assessment</h4>
+          <h4>${t('map.legendTitle', { region: selectedRegion })}</h4>
           <div class="legend-item">
             <div class="color-box" style="background: #FF5252;"></div>
-            <span>High Risk Areas (70-100)</span>
+            <span>${t('map.risk.high')} (70-100)</span>
           </div>
           <div class="legend-item">
             <div class="color-box" style="background: #FFD740;"></div>
-            <span>Medium Risk Areas (30-70)</span>
+            <span>${t('map.risk.medium')} (30-70)</span>
           </div>
           <div class="legend-item">
             <div class="color-box" style="background: #4CAF50;"></div>
-            <span>Low Risk Areas (0-30)</span>
+            <span>${t('map.risk.low')} (0-30)</span>
           </div>
           <div class="legend-item">
             <div class="color-box" style="background: ${regionColor}; opacity: 0.3;"></div>
-            <span>District Boundary</span>
+            <span>${t('map.districtBoundary')}</span>
           </div>
         `;
       }
@@ -493,32 +517,32 @@ function JakartaMap({ selectedRegion }) {
 
       statsCard.innerHTML = `
         <div class="stats-card-header">
-          <h3 class="stats-card-title">${region} Overview</h3>
-          <span class="stats-card-alert ${alertClass}">${stats.alertLevel}</span>
+          <h3 class="stats-card-title">${t('map.statsTitle', { region: selectedRegion })}</h3>
+          <span class="stats-card-alert ${alertClass}">${t(`map.alertLevels.${stats.alertLevel.toLowerCase()}`)}</span>
         </div>
         <div class="stats-card-content">
           <div class="stats-card-item">
-            <span class="stats-card-label">Risk Score</span>
+            <span class="stats-card-label">${t('map.metrics.riskLevel.label')}</span>
             <span class="stats-card-value">${stats.riskScore}/100</span>
           </div>
           <div class="stats-card-item">
-            <span class="stats-card-label">Air Quality Index</span>
+            <span class="stats-card-label">${t('tabData.airQualityIndex.stats.ispu')}</span>
             <span class="stats-card-value">${stats.aqiValue}</span>
           </div>
           <div class="stats-card-item">
-            <span class="stats-card-label">Monitoring Stations</span>
+            <span class="stats-card-label">${t('map.monitoringStations')}</span>
             <span class="stats-card-value">${stats.monitoringStations}</span>
           </div>
           <div class="stats-card-item">
-            <span class="stats-card-label">Population Exposed</span>
+            <span class="stats-card-label">${t('map.metrics.populationExposed.label')}</span>
             <span class="stats-card-value">${(stats.populationExposed / 1000).toFixed(0)}k</span>
           </div>
         </div>
         <div class="stats-card-footer">
-          <span>Updated: ${new Date().toLocaleDateString()}</span>
+          <span>${t('map.lastUpdated')}: ${new Date().toLocaleDateString()}</span>
           <span class="stats-trend ${trendClass}">
             <span class="stats-trend-icon">${trendIcon}</span>
-            ${stats.trend}
+            ${t(`map.trends.${stats.trend.toLowerCase()}`)}
           </span>
         </div>
       `;
@@ -664,7 +688,7 @@ function JakartaMap({ selectedRegion }) {
         position: absolute;
         bottom: 20px;
         right: 20px;
-        background: rgba(20, 20, 20, 0. Hobby);
+        background: rgba(20, 20, 20, 0.85);
         border-radius: 10px;
         padding: 15px;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
@@ -812,7 +836,7 @@ function JakartaMap({ selectedRegion }) {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.5 }}
             >
-              {isInitialLoad ? 'Initializing Jakarta Map...' : `Loading ${selectedRegion || 'data'}...`}
+              {isInitialLoad ? t('map.initializing') : t('map.loading', { region: selectedRegion })}
             </motion.p>
           </motion.div>
         </div>

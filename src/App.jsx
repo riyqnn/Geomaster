@@ -8,7 +8,7 @@ import Footer from "./Components/Footer";
 import MapsLayout from "./Components/MapsLayout";
 import Dashboard from "./Pages/Dashboard";
 import TabelSampah from "./Components/Table";
-import TestPage  from "./Components/testpage";
+import ZoonosisPredictor  from "./Pages/Prediction";
 
 function App() {
   const HomePage = () => {
@@ -32,10 +32,10 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
 
-        <Route path="/test" element={<>
+        <Route path="/predict" element={<>
           <Navbar />
-          <TestPage />
-          <Footer/>
+          <ZoonosisPredictor />
+          <Footer />
         </>} />
         
         {/* Map Routes */}
@@ -49,28 +49,36 @@ function App() {
         <Route path="/products" element={
           <>
             <Navbar />
-            <ProductsAndServices />
+            <div className="bg-gradient-to-br from-gray-900 via-black to-blue-950 text-white">
+            <ProductsAndServices  />
+            </div>
             <Footer />
           </>
         } />
         <Route path="/solutions" element={
           <>
             <Navbar />
+            <div className="bg-gradient-to-br from-gray-900 via-black to-blue-950 text-white">
             <Solutions />
+            </div>
             <Footer />
           </>
         } />
         <Route path="/contact" element={
           <>
             <Navbar />
+            <div className="bg-gradient-to-br from-gray-900 via-black to-blue-950 text-white">
             <Contact />
+            </div>
             <Footer />
           </>
         } />
         <Route path="/faq" element={
           <>
             <Navbar />
+            <div className="bg-gradient-to-br from-gray-900 via-black to-blue-950 text-white">
             <FAQ />
+            </div>
             <Footer />
           </>
         } />

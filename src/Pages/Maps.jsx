@@ -5,9 +5,9 @@ import Search from "../Components/Search";
 import Sampah from "../Layers/sampah";
 import Jumlah from "../Layers/jumlah";
 import UdaraLayer from "../Layers/udara";
-import Zoonosis from "../Layers/zoonosis"; // Import your existing Zoonosis component
+import Zoonosis from "../Layers/zoonosis";
 
-function Maps({ showSampah, isJumlahVisible, activeLayer }) {
+function Maps({ showSampah, isJumlahVisible, activeLayer, sidebarExpanded, tableHeight }) {
   const MAP_SERVICE_KEY = import.meta.env.VITE_MAP_SERVICE_KEY;
   const mapContainer = useRef(null);
   const map = useRef(null);
@@ -24,9 +24,12 @@ function Maps({ showSampah, isJumlahVisible, activeLayer }) {
       pitch: 60,
     });
     
+    // Tambahkan kontrol navigasi default (termasuk zoom in/out)
+    map.current.addControl(new maplibregl.NavigationControl(), 'top-right');
+    
     map.current.on("load", () => {
       window.map = map.current;
-      setIsMapLoaded(true); // ✅ map berhasil dimuat
+      setIsMapLoaded(true);
     });
     
     return () => {
@@ -41,7 +44,7 @@ function Maps({ showSampah, isJumlahVisible, activeLayer }) {
   return (
     <div className="relative w-full h-full">
       <div ref={mapContainer} className="w-full h-full" />
-      <Search />
+      <Search sidebarExpanded={sidebarExpanded} tableHeight={tableHeight} />
       {isJumlahVisible && <Jumlah isVisible={isJumlahVisible} />}
       {showSampah && <Sampah />}
       <UdaraLayer isVisible={isUdaraVisible} />

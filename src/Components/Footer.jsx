@@ -49,21 +49,21 @@ const Footer = () => {
           </h4>
           <div className="flex space-x-4">
             <a 
-              href="#" 
+              href="https://x.com/" 
               aria-label={t('footer.connect.twitter')}
               className="text-2xl hover:text-blue-400 transition-colors"
             >
               <i className="fab fa-twitter"></i>
             </a>
             <a 
-              href="#" 
+              href="https://www.linkedin.com/feed/" 
               aria-label={t('footer.connect.linkedin')}
               className="text-2xl hover:text-blue-400 transition-colors"
             >
               <i className="fab fa-linkedin"></i>
             </a>
             <a 
-              href="#" 
+              href="https://github.com/" 
               aria-label={t('footer.connect.github')}
               className="text-2xl hover:text-blue-400 transition-colors"
             >

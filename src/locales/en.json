@@ -3,6 +3,7 @@
       "title": "BioSecureLand",
       "maps": "Maps",
       "dashboard": "Dashboard",
+      "predictions":"Predict",
       "search": "Search..."
     },
     "welcomePage": {
@@ -32,9 +33,9 @@
         "description": "Interactive GIS-based mapping to identify and visualize high-risk zoonotic disease zones."
       },
       {
-        "title": "AI-Powered Outbreak Prediction",
+        "title": "Outbreak Prediction",
         "icon": "fas fa-brain",
-        "description": "Advanced AI models to predict potential zoonotic outbreaks based on environmental and human factors."
+        "description": "Advanced models to predict potential zoonotic outbreaks based on environmental and human factors."
       },
       {
         "title": "Educational Tools",
@@ -47,7 +48,7 @@
     "solutions": [
       {
         "title": "BiosecureLand Web GIS Platform",
-        "description": "A comprehensive Web GIS platform integrating real-time data, AI predictions, and risk mapping to support zoonosis prevention and policy-making.",
+        "description": "A comprehensive Web GIS platform integrating data, predictions based on analysis, and risk mapping to support zoonosis prevention and policy-making.",
         "buttonText": "Explore Platform"
       },
       {
@@ -93,8 +94,8 @@
         "answer": "Governments, international organizations, private companies, researchers, and communities can use the platform for risk mitigation and education."
       },
       {
-        "question": "How accurate are the AI predictions?",
-        "answer": "Our AI models leverage real-time data and historical patterns, achieving high accuracy, which improves as more data is integrated."
+        "question": "How accurate are the predictions?",
+        "answer": "Our models leverage e data and historical patterns, achieving high accuracy, which improves as more data is integrated."
       },
       {
         "question": "Can the platform integrate with existing systems?",
@@ -139,7 +140,258 @@
       "submit": "Subscribe"
     },
     "copyright": "© 2025 BioSecureLand. All Rights Reserved."
+  },
+
+ "dashboard": {
+    "title": "Environmental Health",
+    "monitoring": "Monitoring",
+    "subtitle": "monitoring and analysis dashboard",
+    "share": "Share",
+    "selectRegion": "Select Region",
+    "dataCategories": "Data Categories",
+    "loading": "Loading data...",
+    "loadingChart": "Loading chart...",
+    "fetchError": "Failed to load data. Please try again.",
+    "aboutDashboard": {
+      "title": "About This Dashboard",
+      "description": "This dashboard provides based on monitoring of environmental health factors across Jakarta's regions, including zoonotic diseases, air quality, and waste management."
+    }
+  },
+  "regions": {
+    "eastJakarta": "East Jakarta",
+    "northJakarta": "North Jakarta",
+    "southJakarta": "South Jakarta",
+    "westJakarta": "West Jakarta",
+    "centralJakarta": "Central Jakarta"
+  },
+  "tabs": {
+    "summary": "Summary",
+    "zoonoticDiseases": "Zoonotic Diseases",
+    "airQualityIndex": "Air Quality Index",
+    "wasteManagement": "Waste Management"
+  },
+  "tabData": {
+    "error": {
+      "title": "Error",
+      "description": "Unable to load data for this region."
+    },
+    "summary": {
+      "chartTitle": "Environmental Health Overview",
+      "description": "Comprehensive overview of key environmental indicators affecting health outcomes in Jakarta regions",
+      "stats": {
+        "diseaseIncidents": "Disease Incidents",
+        "airQualityIndex": "Air Quality Index",
+        "wasteLocations": "Waste Collection Sites",
+        "population": "Population"
+      }
+    },
+    "zoonoticDiseases": {
+      "chartTitle": "Zoonotic Disease Distribution",
+      "description": "Tracking of disease outbreaks with animal origins across Jakarta regions",
+      "chartXLabel": "Metrics",
+      "chartYLabel": "Count",
+      "stats": {
+        "totalCases": "Total Cases",
+        "deaths": "Deaths",
+        "dataPeriod": "Data Period",
+        "caseFatalityRate": "Case Fatality Rate"
+      }
+    },
+    "airQualityIndex": {
+      "chartTitle": "Air Quality Measurements",
+      "description": "air quality monitoring across Jakarta regions",
+      "chartYLabel": "Concentration (µg/m³)",
+      "stats": {
+        "ispu": "Air Quality Index (AQI)",
+        "category": "Category",
+        "categories": {
+          "good": "Good",
+          "moderate": "Moderate",
+          "unhealthy": "Unhealthy",
+          "veryUnhealthy": "Very Unhealthy",
+          "hazardous": "Hazardous"
+        },
+        "criticalPollutant": "Critical Pollutant",
+        "pm25": "PM2.5"
+      }
+    },
+    "wasteManagement": {
+      "chartTitle": "Waste Composition",
+      "description": "Overview of waste management and composition in Jakarta regions",
+      "stats": {
+        "tpsCount": "Collection Sites",
+        "organic": "Organic",
+        "plastic": "Plastic",
+        "paper": "Paper",
+        "metal": "Metal",
+        "glass": "Glass",
+        "hazardous": "Hazardous"
+      }
+    }
+  },
+  "map": {
+    "title": "Environmental Risk Map",
+    "subtitle": "monitoring data visualization",
+    "risk": {
+      "high": "High Risk",
+      "medium": "Medium Risk",
+      "low": "Low Risk"
+    },
+    "monitoringStations": "Monitoring Stations",
+    "averageAQI": "Average AQI",
+    "legendTitle": "{region} Risk Assessment",
+    "districtBoundary": "District Boundary",
+    "statsTitle": "{region} Overview",
+    "initializing": "Initializing Jakarta Map...",
+    "loading": "Loading {region}...",
+    "errorLoading": "Error loading data for {region}",
+    "lastUpdated": "Last updated",
+    "alertLevels": {
+      "low": "Low",
+      "moderate": "Moderate",
+      "high": "High",
+      "severe": "Severe"
+    },
+    "trends": {
+      "improving": "Improving",
+      "stable": "Stable",
+      "worsening": "Worsening"
+    },
+    "metrics": {
+      "riskLevel": {
+        "label": "Risk Score",
+        "description": "Based on zoonotic disease cases"
+      },
+      "casesToday": {
+        "label": "Total Cases",
+        "description": "Cumulative zoonotic cases"
+      },
+      "population": {
+        "label": "Population",
+        "description": "2023 estimate"
+      },
+      "populationExposed": {
+        "label": "Population Exposed",
+        "description": "Population in risk areas"
+      },
+      "preventionIndex": {
+        "label": "Prevention Index",
+        "value": "Good",
+        "description": "Based on waste and air quality management"
+      }
+    }
+  },
+  "chart": {
+    "labels": {
+      "summary": {
+        "jakartaAverage": "Jakarta Average"
+      },
+      "airQuality": {
+        "pm25": "PM2.5",
+        "pm10": "PM10",
+        "ozone": "Ozone",
+        "no2": "NO₂",
+        "so2": "SO₂",
+        "co": "CO",
+        "whoStandards": "WHO Standards"
+      }
+    }
+  },
+  
+  "app": {
+    "title": "Zoonosis Prediction",
+    "subtitle": "Location & environment-based zoonotic disease prediction system"
+  },
+  "status": {
+    "modelActive": "Model Active"
+  },
+  "mapStyle": {
+    "satellite": "🛰️ Satellite",
+    "dark": "🌑 Dark"
+  },
+  "sidebar": {
+    "inputTab": "Input Data",
+    "resultTab": "Prediction Results"
+  },
+  "form": {
+    "fields": {
+      "latitude": {
+        "label": "Latitude",
+        "placeholder": "Enter Latitude"
+      },
+      "longitude": {
+        "label": "Longitude",
+        "placeholder": "Enter Longitude"
+      },
+      "temperature": {
+        "label": "Temperature (°C)",
+        "placeholder": "Enter Temperature"
+      },
+      "rainfall": {
+        "label": "Rainfall (mm/year)",
+        "placeholder": "Enter Rainfall"
+      },
+      "elevation": {
+        "label": "Elevation (m)",
+        "placeholder": "Enter Elevation"
+      },
+      "population_density": {
+        "label": "Population Density (people/km²)",
+        "placeholder": "Enter Population Density"
+      },
+      "forest_coverage": {
+        "label": "Forest Coverage (%)",
+        "placeholder": "Enter Forest Coverage"
+      }
+    },
+    "submit": "Predict Zoonosis",
+    "processing": "Processing..."
+  },
+  "error": {
+    "prediction": "Failed to get prediction."
+  },
+  "result": {
+    "title": "Prediction Results",
+    "detectedDisease": {
+      "label": "Detected Disease"
+    },
+    "confidence": {
+      "level": "Confidence Level",
+      "score": "Confidence Score"
+    },
+    "location": {
+      "title": "Location",
+      "latitude": "Latitude",
+      "longitude": "Longitude"
+    },
+    "visualization": "Probability Visualization",
+    "topDiseases": "Top 3 Diseases",
+    "noData": "No data to display",
+    "noResults": "No prediction results. Please enter data.",
+    "backToInput": "Back to Input"
+  },
+  "chart1": {
+    "title": "Disease Probability",
+    "yAxisLabel": "Probability (%)"
+  },
+  "map1": {
+    "temporaryLocation": "Temporary Location",
+    "lat": "Lat",
+    "lng": "Lng",
+    "confidence": "Confidence",
+    "coordinates": "Coordinates"
+  },
+  "guide": {
+    "title": "Guide",
+    "description": "Click on the map to select a location. Adjust environmental parameters for zoonotic disease prediction."
+  },
+  "accessibility": {
+    "closeSidebar": "Close sidebar",
+    "openSidebar": "Open sidebar",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out"
   }
+
   }
 
   

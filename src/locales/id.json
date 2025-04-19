@@ -3,6 +3,7 @@
     "title": "BioSecureLand",
     "maps": "Peta",
     "dashboard": "Dasbor",
+    "predictions":"Prediksi",
     "search": "Cari..."
   },
   "welcomePage": {
@@ -32,9 +33,9 @@
         "description": "Pemetaan berbasis GIS interaktif untuk mengidentifikasi dan memvisualisasikan zona berisiko tinggi penyakit zoonosis."
       },
       {
-        "title": "Prediksi Wabah Berbasis AI",
+        "title": "Prediksi Wabah",
         "icon": "fas fa-brain",
-        "description": "Model AI canggih untuk memprediksi potensi wabah zoonosis berdasarkan faktor lingkungan dan manusia."
+        "description": "Model canggih untuk memprediksi potensi wabah zoonosis berdasarkan faktor lingkungan dan manusia."
       },
       {
         "title": "Alat Edukasi",
@@ -47,7 +48,7 @@
     "solutions": [
       {
         "title": "Platform Web GIS BiosecureLand",
-        "description": "Platform Web GIS komprehensif yang mengintegrasikan data real-time, prediksi AI, dan pemetaan risiko untuk mendukung pencegahan zoonosis dan pengambilan kebijakan.",
+        "description": "Platform Web GIS komprehensif yang mengintegrasikan data, prediksi berdasarkan analisis, dan pemetaan risiko untuk mendukung pencegahan zoonosis dan pengambilan kebijakan.",
         "buttonText": "Jelajahi Platform"
       },
       {
@@ -93,8 +94,8 @@
         "answer": "Pemerintah, organisasi internasional, perusahaan swasta, peneliti, dan masyarakat dapat menggunakan platform ini untuk mitigasi risiko dan edukasi."
       },
       {
-        "question": "Seberapa akurat prediksi AI-nya?",
-        "answer": "Model AI kami memanfaatkan data real-time dan pola historis, menghasilkan akurasi tinggi yang terus meningkat seiring integrasi data lebih banyak."
+        "question": "Seberapa akurat prediksinya?",
+        "answer": "Model kami memanfaatkan data dan pola historis, menghasilkan akurasi tinggi yang terus meningkat seiring integrasi data lebih banyak."
       },
       {
         "question": "Apakah platform ini dapat terintegrasi dengan sistem yang sudah ada?",
@@ -139,5 +140,255 @@
       "submit": "Berlangganan"
     },
     "copyright": "© 2025 BioSecureLand. Seluruh Hak Dilindungi."
+  },
+
+  "dashboard": {
+    "title": "Zoonosis ",
+    "monitoring": "Pemantauan",
+    "subtitle": "Dasbor pemantauan dan analisis ",
+    "share": "Bagikan",
+    "selectRegion": "Pilih Wilayah",
+    "dataCategories": "Kategori Data",
+    "loading": "Memuat data...",
+    "loadingChart": "Memuat grafik...",
+    "fetchError": "Gagal memuat data. Silakan coba lagi.",
+    "aboutDashboard": {
+      "title": "Tentang Dasbor Ini",
+      "description": "Dasbor ini menyediakan pemantauan berdasarkan faktor kesehatan lingkungan di wilayah Jakarta, termasuk penyakit zoonosis, kualitas udara, dan pengelolaan sampah."
+    }
+  },
+  "regions": {
+    "eastJakarta": "Jakarta Timur",
+    "northJakarta": "Jakarta Utara",
+    "southJakarta": "Jakarta Selatan",
+    "westJakarta": "Jakarta Barat",
+    "centralJakarta": "Jakarta Pusat"
+  },
+  "tabs": {
+    "summary": "Ringkasan",
+    "zoonoticDiseases": "Penyakit Zoonosis",
+    "airQualityIndex": "Indeks Kualitas Udara",
+    "wasteManagement": "Pengelolaan Sampah"
+  },
+  "tabData": {
+    "error": {
+      "title": "Kesalahan",
+      "description": "Tidak dapat memuat data untuk wilayah ini."
+    },
+    "summary": {
+      "chartTitle": "Ikhtisar Kesehatan Lingkungan",
+      "description": "Ikhtisar komprehensif indikator lingkungan utama yang mempengaruhi hasil kesehatan di wilayah Jakarta",
+      "stats": {
+        "diseaseIncidents": "Insiden Penyakit",
+        "airQualityIndex": "Indeks Kualitas Udara",
+        "wasteLocations": "Lokasi Pengumpulan Sampah",
+        "population": "Populasi"
+      }
+    },
+    "zoonoticDiseases": {
+      "chartTitle": "Distribusi Penyakit Zoonosis",
+      "description": "Pelacakan wabah penyakit dengan asal hewan di wilayah Jakarta",
+      "chartXLabel": "Metrik",
+      "chartYLabel": "Jumlah",
+      "stats": {
+        "totalCases": "Total Kasus",
+        "deaths": "Kematian",
+        "dataPeriod": "Periode Data",
+        "caseFatalityRate": "Tingkat Fatalitas Kasus"
+      }
+    },
+    "airQualityIndex": {
+      "chartTitle": "Pengukuran Kualitas Udara",
+      "description": "Pemantauan kualitas udara di wilayah Jakarta",
+      "chartYLabel": "Konsentrasi (µg/m³)",
+      "stats": {
+        "ispu": "Indeks Kualitas Udara (IKU)",
+        "category": "Kategori",
+        "categories": {
+          "good": "Baik",
+          "moderate": "Sedang",
+          "unhealthy": "Tidak Sehat",
+          "veryUnhealthy": "Sangat Tidak Sehat",
+          "hazardous": "Berbahaya"
+        },
+        "criticalPollutant": "Polutan Kritis",
+        "pm25": "PM2.5"
+      }
+    },
+    "wasteManagement": {
+      "chartTitle": "Komposisi Sampah",
+      "description": "Ikhtisar pengelolaan sampah dan komposisi di wilayah Jakarta",
+      "stats": {
+        "tpsCount": "Lokasi Pengumpulan",
+        "organic": "Organik",
+        "plastic": "Plastik",
+        "paper": "Kertas",
+        "metal": "Logam",
+        "glass": "Kaca",
+        "hazardous": "Berbahaya"
+      }
+    }
+  },
+  "map": {
+    "title": "Peta Risiko Lingkungan",
+    "subtitle": "Visualisasi data pemantauan",
+    "risk": {
+      "high": "Risiko Tinggi",
+      "medium": "Risiko Menengah",
+      "low": "Risiko Rendah"
+    },
+    "monitoringStations": "Stasiun Pemantauan",
+    "averageAQI": "Rata-rata IKU",
+    "legendTitle": "Penilaian Risiko {region}",
+    "districtBoundary": "Batas Distrik",
+    "statsTitle": "Ikhtisar {region}",
+    "initializing": "Menginisialisasi Peta Jakarta...",
+    "loading": "Memuat {region}...",
+    "errorLoading": "Gagal memuat data untuk {region}",
+    "lastUpdated": "Terakhir diperbarui",
+    "alertLevels": {
+      "low": "Rendah",
+      "moderate": "Sedang",
+      "high": "Tinggi",
+      "severe": "Parah"
+    },
+    "trends": {
+      "improving": "Meningkat",
+      "stable": "Stabil",
+      "worsening": "Memburuk"
+    },
+    "metrics": {
+      "riskLevel": {
+        "label": "Skor Risiko",
+        "description": "Berdasarkan kasus penyakit zoonosis"
+      },
+      "casesToday": {
+        "label": "Total Kasus",
+        "description": "Kasus zoonosis kumulatif"
+      },
+      "population": {
+        "label": "Populasi",
+        "description": "Estimasi 2023"
+      },
+      "populationExposed": {
+        "label": "Populasi Terekspos",
+        "description": "Populasi di area risiko"
+      },
+      "preventionIndex": {
+        "label": "Indeks Pencegahan",
+        "value": "Baik",
+        "description": "Berdasarkan pengelolaan sampah dan kualitas udara"
+      }
+    }
+  },
+  "chart": {
+    "labels": {
+      "summary": {
+        "jakartaAverage": "Rata-rata Jakarta"
+      },
+      "airQuality": {
+        "pm25": "PM2.5",
+        "pm10": "PM10",
+        "ozone": "Ozon",
+        "no2": "NO₂",
+        "so2": "SO₂",
+        "co": "CO",
+        "whoStandards": "Standar WHO"
+      }
+    }
+  },
+  
+  "app": {
+    "title": "Prediksi Zoonosis",
+    "subtitle": "Sistem prediksi penyakit zoonosis berbasis lokasi & lingkungan"
+  },
+  "status": {
+    "modelActive": "Model Aktif"
+  },
+  "mapStyle": {
+    "satellite": "🛰️ Satelit",
+    "dark": "🌑 Gelap"
+  },
+  "sidebar": {
+    "inputTab": "Input Data",
+    "resultTab": "Hasil Prediksi"
+  },
+  "form": {
+    "fields": {
+      "latitude": {
+        "label": "Latitude",
+        "placeholder": "Masukkan Latitude"
+      },
+      "longitude": {
+        "label": "Longitude", 
+        "placeholder": "Masukkan Longitude"
+      },
+      "temperature": {
+        "label": "Temperatur (°C)",
+        "placeholder": "Masukkan Temperatur"
+      },
+      "rainfall": {
+        "label": "Curah Hujan (mm/tahun)",
+        "placeholder": "Masukkan Curah Hujan"
+      },
+      "elevation": {
+        "label": "Ketinggian (m)",
+        "placeholder": "Masukkan Ketinggian"
+      },
+      "population_density": {
+        "label": "Kepadatan Populasi (orang/km²)",
+        "placeholder": "Masukkan Kepadatan Populasi"
+      },
+      "forest_coverage": {
+        "label": "Cakupan Hutan (%)",
+        "placeholder": "Masukkan Cakupan Hutan"
+      }
+    },
+    "submit": "Prediksi Zoonosis",
+    "processing": "Memproses..."
+  },
+  "error": {
+    "prediction": "Gagal mendapatkan prediksi."
+  },
+  "result": {
+    "title": "Hasil Prediksi",
+    "detectedDisease": {
+      "label": "Penyakit Terdeteksi"
+    },
+    "confidence": {
+      "level": "Tingkat Keyakinan",
+      "score": "Skor Keyakinan"
+    },
+    "location": {
+      "title": "Lokasi",
+      "latitude": "Latitude",
+      "longitude": "Longitude"
+    },
+    "visualization": "Visualisasi Probabilitas",
+    "topDiseases": "Top 3 Penyakit",
+    "noData": "Tidak ada data untuk ditampilkan",
+    "noResults": "Tidak ada hasil prediksi. Silakan masukkan data.",
+    "backToInput": "Kembali ke Input"
+  },
+  "chart1": {
+    "title": "Probabilitas Penyakit",
+    "yAxisLabel": "Probabilitas (%)"
+  },
+  "map1": {
+    "temporaryLocation": "Lokasi Sementara",
+    "lat": "Lat",
+    "lng": "Lng",
+    "confidence": "Keyakinan",
+    "coordinates": "Koordinat"
+  },
+  "guide": {
+    "title": "Panduan",
+    "description": "Klik peta untuk memilih lokasi. Sesuaikan parameter lingkungan untuk prediksi penyakit zoonosis."
+  },
+  "accessibility": {
+    "closeSidebar": "Tutup sidebar",
+    "openSidebar": "Buka sidebar",
+    "zoomIn": "Perbesar",
+    "zoomOut": "Perkecil"
   }
 }

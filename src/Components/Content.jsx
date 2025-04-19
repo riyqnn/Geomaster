@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import image1 from "/image1.png";
-import image2 from "/image1.png";
+import image2 from "/image2.png";
 import clsx from "clsx";
 
 
@@ -281,17 +281,7 @@ const ServiceCard = React.memo(
         </div>
       </div>
       <h3 className="text-xl font-bold mb-4 text-center">{service.title}</h3>
-      <p className="text-gray-300 text-center mb-6">{service.description}</p>
-      <div
-        className={clsx(
-          "mt-4 transition-all duration-300 transform",
-          activeIndex === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-        )}
-      >
-        <button className="w-full py-2 px-4 bg-transparent border border-blue-500/40 text-blue-400 rounded-lg hover:bg-blue-500/10 transition-all">
-          {t("productsAndServices.learnMore")}
-        </button>
-      </div>
+      <p className="text-gray-300 text-center">{service.description}</p>
     </div>
   )
 );
