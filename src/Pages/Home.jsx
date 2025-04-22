@@ -14,10 +14,18 @@ const WelcomePage = () => {
   useEffect(() => {
     const updateDimensions = () => {
       const width = window.innerWidth;
+      const height = window.innerHeight;
+      
       let newSize;
-      if (width < 640) newSize = Math.min(300, width - 40);
-      else if (width < 1024) newSize = 400;
-      else newSize = 500;
+      if (width < 640) {
+        // For mobile, make the globe smaller but maintain aspect ratio
+        newSize = Math.min(300, width - 40);
+      } else if (width < 1024) {
+        newSize = Math.min(400, height - 200);
+      } else {
+        newSize = Math.min(500, height - 200);
+      }
+      
       setDimensions({ width: newSize, height: newSize });
     };
 
@@ -45,37 +53,36 @@ const WelcomePage = () => {
   ];
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-gray-900 via-black to-blue-950 text-white overflow-hidden flex items-center justify-center">
+    <div className="relative min-h-screen bg-gradient-to-br from-gray-900 via-black to-blue-950 text-white overflow-hidden flex items-center justify-center pt-4">
       <div className="absolute inset-0 bg-black/20 backdrop-blur-sm"></div>
       
-      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 z-10">
+      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pt-20 sm:pt-24 lg:pt-16 z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           {/* Text Section */}
-          <div className="space-y-6 text-center lg:text-left">
-            <div className="flex items-center justify-center lg:justify-start space-x-4">
-              <i className="fas fa-globe text-3xl sm:text-4xl text-blue-400 animate-spin-slow"></i>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
+          <div className="space-y-6 text-center lg:text-left mt-8 sm:mt-0">
+            <div className="flex items-center justify-center lg:justify-start space-x-3 sm:space-x-4">
+              <i className="fas fa-globe text-2xl sm:text-4xl text-blue-400 animate-spin-slow"></i>
+              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
                 {t('welcomePage.title.first')}
                 <span className="text-blue-400 ml-2">{t('welcomePage.title.highlight')}</span>
               </h1>
-
             </div>
             
-            <p className="text-base sm:text-lg lg:text-xl text-gray-300 max-w-2xl mx-auto lg:mx-0">
+            <p className="text-sm sm:text-lg lg:text-xl text-gray-300 max-w-2xl mx-auto lg:mx-0 px-2 sm:px-0">
               {t('welcomePage.description')}
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-8">
               <NavLink 
                 to="/maps" 
-                className="bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-6 sm:px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 active:scale-95"
+                className="bg-blue-600 hover:bg-blue-700 text-white py-2 sm:py-2.5 px-5 sm:px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 active:scale-95 text-sm sm:text-base"
               >
                 {t('welcomePage.exploreButton')}
               </NavLink>
               
               <button 
                 onClick={toggleAnimation}
-                className="border border-white/30 text-white py-2.5 px-6 sm:px-8 rounded-full hover:bg-white/10 transition-all duration-300 transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
+                className="border border-white/30 text-white py-2 sm:py-2.5 px-5 sm:px-8 rounded-full hover:bg-white/10 transition-all duration-300 transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-sm sm:text-base"
               >
                 {isAnimating ? (
                   <>
@@ -93,22 +100,24 @@ const WelcomePage = () => {
           </div>
 
           {/* Globe Visualization */}
-          <div className="relative flex justify-center items-center">
-            <Globe
-              ref={globeRef}
-              width={dimensions.width}
-              height={dimensions.height}
-              backgroundColor="rgba(0,0,0,0)"
-              globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
-              arcsData={isAnimating ? globalConnections : []}
-              arcDashLength={0.4}
-              arcDashGap={0.2}
-              arcDashAnimateTime={4000}
-              arcStroke={0.5}
-              arcAltitudeAutoScale={0.3}
-              atmosphereColor="#3b82f6"
-              atmosphereAltitude={0.2}
-            />
+          <div className="relative flex justify-center items-center mt-8 lg:mt-0">
+            <div className="w-full flex justify-center">
+              <Globe
+                ref={globeRef}
+                width={dimensions.width}
+                height={dimensions.height}
+                backgroundColor="rgba(0,0,0,0)"
+                globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
+                arcsData={isAnimating ? globalConnections : []}
+                arcDashLength={0.4}
+                arcDashGap={0.2}
+                arcDashAnimateTime={4000}
+                arcStroke={0.5}
+                arcAltitudeAutoScale={0.3}
+                atmosphereColor="#3b82f6"
+                atmosphereAltitude={0.2}
+              />
+            </div>
           </div>
         </div>
       </div>
