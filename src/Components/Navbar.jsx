@@ -30,24 +30,23 @@ const Navbar = () => {
     setIsLanguageOpen(false);
   };
 
-  // Add body overflow control when mobile menu is open
+  // Control body overflow for mobile menu
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = '';
     }
-    
     return () => {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = '';
     };
   }, [isMobileMenuOpen]);
 
   return (
     <>
-      <nav className="fixed top-0 left-0 w-full bg-black/30 backdrop-blur-xl border-b border-white/10 z-50">
+      <nav className="fixed top-0 left-0 w-full bg-black/30 backdrop-blur-xl border-b border-white/10 z-[100]">
         <div className="container mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-          {/* Logo - Link to Home */}
+          {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
             <img
               src={logo}
@@ -59,7 +58,7 @@ const Navbar = () => {
             </h1>
           </Link>
 
-          {/* Desktop Navigation - Centered */}
+          {/* Desktop Navigation */}
           <div className="absolute left-1/2 transform -translate-x-1/2 hidden md:flex items-center space-x-8">
             <Link
               to="/maps"
@@ -86,11 +85,13 @@ const Navbar = () => {
 
           {/* Right Side Navigation */}
           <div className="flex items-center space-x-2 sm:space-x-4">
-            {/* Language Dropdown */}
+            {/* Language Dropdown (Desktop) */}
             <div className="relative hidden md:block">
               <button
                 onClick={() => setIsLanguageOpen(!isLanguageOpen)}
                 className="flex items-center space-x-2 text-white/70 hover:text-white transition-colors"
+                aria-expanded={isLanguageOpen}
+                aria-label={t('navbar.languageToggle')}
               >
                 <i className="fas fa-globe text-lg"></i>
                 <span>{selectedLanguage.name}</span>
@@ -112,12 +113,13 @@ const Navbar = () => {
               )}
             </div>
 
-            {/* Search Bar */}
+            {/* Search Bar (Desktop) */}
             <div className="relative hidden md:block">
               <input
                 type="text"
                 placeholder={t('navbar.search')}
                 className="pl-8 pr-3 py-2 bg-white/10 text-white border border-white/20 rounded-full w-48 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all placeholder-white/50"
+                aria-label={t('navbar.search')}
               />
               <i className="fas fa-search absolute left-3 top-3.5 text-white/50"></i>
             </div>
@@ -127,27 +129,36 @@ const Navbar = () => {
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="text-white/70 hover:text-white p-1"
+                aria-expanded={isMobileMenuOpen}
+                aria-label={isMobileMenuOpen ? t('navbar.closeMenu') : t('navbar.openMenu')}
               >
-                {isMobileMenuOpen
-                  ? <i className="fas fa-times text-xl"></i>
-                  : <i className="fas fa-bars text-xl"></i>}
+                {isMobileMenuOpen ? (
+                  <i className="fas fa-times text-xl"></i>
+                ) : (
+                  <i className="fas fa-bars text-xl"></i>
+                )}
               </button>
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Menu - Separated from nav to ensure full screen */}
+      {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-40 md:hidden" aria-modal="true">
-          {/* Background overlay */}
-          <div 
-            className="fixed inset-0 bg-black/90 backdrop-blur-lg" 
+        <div
+          className="fixed inset-0 z-[90] md:hidden bg-black/90 backdrop-blur-lg"
+          aria-modal="true"
+          role="dialog"
+        >
+          {/* Close on Overlay Click */}
+          <div
+            className="absolute inset-0"
             onClick={() => setIsMobileMenuOpen(false)}
+            aria-hidden="true"
           ></div>
-          
-          {/* Menu content */}
-          <div className="fixed inset-0 pt-16 pb-6 overflow-y-auto">
+
+          {/* Menu Content */}
+          <div className="relative flex flex-col h-full pt-16 pb-6 max-h-screen overflow-y-auto">
             <div className="container mx-auto px-6 py-8 space-y-6">
               <Link
                 to="/maps"
@@ -176,6 +187,8 @@ const Navbar = () => {
                 <button
                   onClick={() => setIsLanguageOpen(!isLanguageOpen)}
                   className="flex items-center space-x-2 text-white/70 hover:text-white text-lg py-3 w-full"
+                  aria-expanded={isLanguageOpen}
+                  aria-label={t('navbar.languageToggle')}
                 >
                   <i className="fas fa-globe text-lg mr-2"></i>
                   <span>{selectedLanguage.name}</span>
@@ -203,6 +216,7 @@ const Navbar = () => {
                   type="text"
                   placeholder={t('navbar.search')}
                   className="w-full pl-8 pr-3 py-3 bg-white/10 text-white border border-white/20 rounded-full focus:outline-none focus:ring-2 focus:ring-white/50 transition-all placeholder-white/50"
+                  aria-label={t('navbar.search')}
                 />
                 <i className="fas fa-search absolute left-3 top-4 text-white/50"></i>
               </div>

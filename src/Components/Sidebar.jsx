@@ -1,22 +1,46 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '/logo.png';
 
-const MapSidebar = ({ onToggleSampah, expanded, toggleExpand, onLayerChange }) => {
-  const [localActiveLayer, setLocalActiveLayer] = useState(null);
+const MapSidebar = ({ onToggleSampah, expanded, toggleExpand, onLayerChange, activeLayer: parentActiveLayer }) => {
+  // Gunakan state lokal untuk menghindari update selama render
+  const [localActiveLayer, setLocalActiveLayer] = useState(parentActiveLayer || null);
   const [activeMenu, setActiveMenu] = useState(null);
   const navigate = useNavigate();
 
+  // Update lokalActiveLayer saat prop berubah
+  useEffect(() => {
+    if (parentActiveLayer !== localActiveLayer) {
+      setLocalActiveLayer(parentActiveLayer);
+    }
+  }, [parentActiveLayer]);
+
+  // Perbaikan pada handleToggleLayer untuk mencegah update state parent selama render
   const handleToggleLayer = useCallback((layerId) => {
-    setLocalActiveLayer(prev => {
-      const newLayer = prev === layerId ? null : layerId;
-      if (layerId === 'sampah') {
-        onToggleSampah(newLayer === 'sampah');
-      }
-      onLayerChange(newLayer);
-      return newLayer;
-    });
-  }, [onToggleSampah, onLayerChange]);
+    // Jika layer yang sama diklik, gunakan fungsi toggle
+    if (localActiveLayer === layerId) {
+      setLocalActiveLayer(null);
+      // Update parent state di luar proses render
+      setTimeout(() => {
+        onLayerChange(null);
+        if (layerId === 'sampah') {
+          onToggleSampah(false);
+        }
+      }, 0);
+    } else {
+      setLocalActiveLayer(layerId);
+      // Update parent state di luar proses render
+      setTimeout(() => {
+        onLayerChange(layerId);
+        if (layerId === 'sampah') {
+          onToggleSampah(true);
+        } else if (localActiveLayer === 'sampah') {
+          // Jika layer sebelumnya adalah sampah, nonaktifkan
+          onToggleSampah(false);
+        }
+      }, 0);
+    }
+  }, [localActiveLayer, onToggleSampah, onLayerChange]);
 
   const goToHome = useCallback(() => {
     navigate('/', { replace: true });
@@ -33,7 +57,7 @@ const MapSidebar = ({ onToggleSampah, expanded, toggleExpand, onLayerChange }) =
   ], []);
 
   return (
-    <div className={`h-screen bg-gradient-to-b from-slate-900 to-slate-800 border-r border-slate-700/30 flex flex-col transition-all duration-300 shadow-xl fixed md:static z-20 ${expanded ? 'w-64 md:w-72' : 'w-16 md:w-20'}`}>
+    <div className={`h-screen bg-gradient-to-b from-slate-900 to-slate-800 border-r border-slate-700/30 flex flex-col transition-all duration-300 shadow-xl fixed md:relative z-20 ${expanded ? 'w-64 md:w-72' : 'w-16 md:w-20'}`}>
       <div className="p-3 md:p-5 border-b border-slate-700/30 flex items-center justify-between shrink-0">
         <button
           onClick={goToHome}
@@ -138,7 +162,7 @@ const MapSidebar = ({ onToggleSampah, expanded, toggleExpand, onLayerChange }) =
                 </div>
               )}
               {localActiveLayer === 'penyakit-zoonosis' && (
-                <div className="flex items-center gap-2 md:gap-3 p-2 md:p-3 bg-blue-800/70 rounded-lg shadow-md hover:shadow-red-500/30 hover:bg-red-700 transition-colors duration-200 cursor-pointer">
+                <div className="flex items-center gap-2 md:gap-3 p-2 md:p-3 bg-blue-800/70 rounded-lg shadow-md hover:shadow-blue-500/30 hover:bg-blue-700 transition-colors duration-200 cursor-pointer">
                   <div className="w-3 h-3 md:w-4 md:h-4 bg-blue-400 rounded-full" />
                   <span className="text-sm md:text-base text-white">Penyakit Zoonosis</span>
                 </div>

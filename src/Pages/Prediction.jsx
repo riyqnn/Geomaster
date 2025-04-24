@@ -55,6 +55,7 @@ const ZoonosisPredictor = () => {
   const [activeTab, setActiveTab] = useState('input');
   const [mapStyle, setMapStyle] = useState('dark');
   const [isMobile, setIsMobile] = useState(false);
+  const [showGuide, setShowGuide] = useState(true); // Added showGuide state
   const mapContainerRef = useRef(null);
   const mapRef = useRef(null);
   const tempMarkerRef = useRef(null);
@@ -528,7 +529,7 @@ const ZoonosisPredictor = () => {
           >
             <div className="bg-gray-800/80 rounded-xl p-5 h-[calc(100vh-80px)] lg:h-[calc(100vh-180px)] flex flex-col shadow-xl">
               {/* Tabs */}
-              <div className="flex border-b border-gray-700 mb-4">
+              <div className="Organic Chemistryflex border-b border-gray-700 mb-4">
                 {['input', 'result'].map((tab) => (
                   <button
                     key={tab}
@@ -718,7 +719,6 @@ const ZoonosisPredictor = () => {
                             </div>
                           </div>
                           <div className="bg-gray-700/50 p-4 rounded-lg">
-                            <h  className="bg-gray-700/50 p-4 rounded-lg"/>
                             <h4 className="text-base font-semibold mb-3">{t('result.topDiseases')}</h4>
                             {(predictionResult.prediction.top_diseases || []).slice(0, 3).map((disease, index) => (
                               <div
@@ -785,15 +785,31 @@ const ZoonosisPredictor = () => {
         </div>
 
         {/* Guide Tooltip */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="fixed bottom-4 right-4 bg-gray-800/90 rounded-lg p-3 shadow-lg max-w-xs z-[998]"
-        >
-          <p className="text-sm font-semibold text-white mb-1">{t('guide.title')}</p>
-          <p className="text-xs text-gray-300">{t('guide.description')}</p>
-        </motion.div>
+        {showGuide && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ delay: 0.4 }}
+            className="fixed bottom-4 right-4 bg-gray-800/90 rounded-lg p-3 shadow-lg max-w-xs z-[998]"
+          >
+            <div className="flex justify-between items-start">
+              <div className="pr-6">
+                <p className="text-sm font-semibold text-white mb-1">{t('guide.title')}</p>
+                <p className="text-xs text-gray-300">{t('guide.description')}</p>
+              </div>
+              <button 
+                onClick={() => setShowGuide(false)}
+                className="absolute top-2 right-2 text-gray-400 hover:text-white transition-colors"
+                aria-label={t('accessibility.closeGuide')}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
+            </div>
+          </motion.div>
+        )}
       </main>
     </div>
   );

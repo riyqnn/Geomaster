@@ -1,8 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { NavLink } from "react-router-dom"; 
+import { NavLink } from "react-router-dom";
 import Globe from "react-globe.gl";
-import '../index.css'
+import '../index.css';
 
 const WelcomePage = () => {
   const { t } = useTranslation();
@@ -18,7 +18,6 @@ const WelcomePage = () => {
       
       let newSize;
       if (width < 640) {
-        // For mobile, make the globe smaller but maintain aspect ratio
         newSize = Math.min(300, width - 40);
       } else if (width < 1024) {
         newSize = Math.min(400, height - 200);
@@ -38,25 +37,26 @@ const WelcomePage = () => {
     setIsAnimating(!isAnimating);
   };
 
-  // Expanded global connections
   const globalConnections = [
-    { startLat: 40.7128, startLng: -74.006, endLat: 51.5074, endLng: -0.1278, color: ["#ff6b6b", "#4ecdc4"] },  // NY - London
-    { startLat: -33.8688, startLng: 151.2093, endLat: 37.7749, endLng: -122.4194, color: ["#45b7d1", "#96c93d"] }, // Sydney - SF
-    { startLat: 35.6762, startLng: 139.6503, endLat: 48.8566, endLng: 2.3522, color: ["#f7d794", "#778beb"] },    // Tokyo - Paris
-    { startLat: 19.4326, startLng: -99.1332, endLat: -34.6037, endLng: -58.3816, color: ["#ff9f1c", "#2ab7ca"] }, // Mexico City - Buenos Aires
-    { startLat: 55.7558, startLng: 37.6173, endLat: 31.2304, endLng: 121.4737, color: ["#e63946", "#a8dadc"] },   // Moscow - Shanghai
-    { startLat: 28.6139, startLng: 77.2090, endLat: -26.2041, endLng: 28.0473, color: ["#f4a261", "#e76f51"] },   // Delhi - Johannesburg
-    { startLat: 39.9042, startLng: 116.4074, endLat: 1.3521, endLng: 103.8198, color: ["#2a9d8f", "#e9c46a"] },  // Beijing - Singapore
-    { startLat: 52.5200, startLng: 13.4050, endLat: -23.5505, endLng: -46.6333, color: ["#264653", "#f4a261"] },  // Berlin - São Paulo
-    { startLat: 25.2048, startLng: 55.2708, endLat: 41.9028, endLng: 12.4964, color: ["#e76f51", "#2a9d8f"] },    // Dubai - Rome
-    { startLat: 43.6532, startLng: -79.3832, endLat: 64.1355, endLng: -21.8174, color: ["#a8dadc", "#457b9d"] }  // Toronto - Reykjavik
+    { startLat: 40.7128, startLng: -74.006, endLat: 51.5074, endLng: -0.1278, color: ["#ff6b6b", "#4ecdc4"] },
+    { startLat: -33.8688, startLng: 151.2093, endLat: 37.7749, endLng: -122.4194, color: ["#45b7d1", "#96c93d"] },
+    { startLat: 35.6762, startLng: 139.6503, endLat: 48.8566, endLng: 2.3522, color: ["#f7d794", "#778beb"] },
+    { startLat: 19.4326, startLng: -99.1332, endLat: -34.6037, endLng: -58.3816, color: ["#ff9f1c", "#2ab7ca"] },
+    { startLat: 55.7558, startLng: 37.6173, endLat: 31.2304, endLng: 121.4737, color: ["#e63946", "#a8dadc"] },
+    { startLat: 28.6139, startLng: 77.2090, endLat: -26.2041, endLng: 28.0473, color: ["#f4a261", "#e76f51"] },
+    { startLat: 39.9042, startLng: 116.4074, endLat: 1.3521, endLng: 103.8198, color: ["#2a9d8f", "#e9c46a"] },
+    { startLat: 52.5200, startLng: 13.4050, endLat: -23.5505, endLng: -46.6333, color: ["#264653", "#f4a261"] },
+    { startLat: 25.2048, startLng: 55.2708, endLat: 41.9028, endLng: 12.4964, color: ["#e76f51", "#2a9d8f"] },
+    { startLat: 43.6532, startLng: -79.3832, endLat: 64.1355, endLng: -21.8174, color: ["#a8dadc", "#457b9d"] }
   ];
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-gray-900 via-black to-blue-950 text-white overflow-hidden flex items-center justify-center pt-4">
-      <div className="absolute inset-0 bg-black/20 backdrop-blur-sm"></div>
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-blue-950 text-white">
+      {/* Background Overlay */}
+      <div className="absolute inset-0 bg-black/20 backdrop-blur-sm z-[-1]"></div>
       
-      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pt-20 sm:pt-24 lg:pt-16 z-10">
+      {/* Content */}
+      <div className="relative w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pt-24 z-10 overflow-x-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           {/* Text Section */}
           <div className="space-y-6 text-center lg:text-left mt-8 sm:mt-0">
@@ -101,7 +101,7 @@ const WelcomePage = () => {
 
           {/* Globe Visualization */}
           <div className="relative flex justify-center items-center mt-8 lg:mt-0">
-            <div className="w-full flex justify-center">
+            <div className="w-full max-w-[500px] flex justify-center">
               <Globe
                 ref={globeRef}
                 width={dimensions.width}

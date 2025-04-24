@@ -67,9 +67,9 @@
   "contact": {
     "title": "Hubungi Kami",
     "contactInfo": {
-      "address": "Pusat Inovasi Biosecure, Kota Global",
-      "phone": "+62 (21) 123-4567",
-      "email": "info@biosecuregis.id"
+      "address": "Pusat Inovasi Biosecure, Jakarta Timur",
+      "phone": "+62 819-0123-5679",
+      "email": "BioSecureLand@gmail.com"
     },
     "businessHours": {
       "weekdays": "Senin–Jumat: 08.00–17.00",
@@ -102,8 +102,9 @@
         "answer": "Ya, platform kami mendukung API dan konektor untuk berintegrasi dengan basis data pemerintahan, lingkungan, dan kesehatan."
       },
       {
-        "question": "Dukungan apa yang diberikan setelah implementasi?",
-        "answer": "Kami menyediakan dukungan teknis 24/7, pembaruan rutin, pelatihan pengguna, dan bantuan integrasi data."
+       "question": "Dukungan seperti apa yang diberikan setelah implementasi?",
+      "answer": "Setelah implementasi, kami menyediakan pemantauan rutin, dukungan teknis, pembaruan sistem secara berkala untuk keamanan dan fitur terbaru, serta pengembangan tambahan sesuai kebutuhan baru."
+
       }
     ],
     "heading": {

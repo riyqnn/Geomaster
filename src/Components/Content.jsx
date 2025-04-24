@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState, memo, useMemo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import { NavLink } from "react-router-dom";
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import image1 from "/image1.png";
@@ -12,7 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export const PageLayout = ({ children }) => {
   return (
-    <div className="relative bg-gradient-to-br from-gray-900 via-black to-blue-950 text-white overflow-hidden">
+    <div className="relative bg-gradient-to-br from-gray-900 via-black to-blue-950 text-white overflow-x-hidden">
       {/* Abstract background elements */}
       <div className="fixed inset-0 bg-[url('/images/grid-pattern.svg')] opacity-10 pointer-events-none"></div>
       
@@ -35,23 +36,18 @@ export const Contact = memo(() => {
   const { t } = useTranslation();
   const contactRef = useRef(null);
   const headingRef = useRef(null);
-  // Use state only when necessary, avoid for static translations
   const formDataRef = useRef({
     name: '',
     email: '',
     message: ''
   });
 
-  // Memoize animation setup to prevent re-creation
   const setupAnimations = useCallback(() => {
     const heading = headingRef.current;
     if (!heading) return;
 
-    // Cache heading text and split into characters
     const chars = heading.textContent.split('');
-    heading.innerHTML = ''; // Clear content to avoid duplication
-    
-    // Use document fragment to minimize DOM reflows
+    heading.innerHTML = '';
     const fragment = document.createDocumentFragment();
     chars.forEach((char) => {
       const span = document.createElement('span');
@@ -63,32 +59,30 @@ export const Contact = memo(() => {
 
     const characters = heading.querySelectorAll('span');
     
-    // Optimize GSAP animation with will-change
     gsap.fromTo(
       characters,
       { 
         opacity: 0,
-        y: () => gsap.utils.random(-50, 50), // Simplified random
+        y: () => gsap.utils.random(-50, 50),
         rotateZ: () => gsap.utils.random(-10, 10),
-        willChange: 'transform, opacity' // Optimize rendering
+        willChange: 'transform, opacity'
       },
       {
         opacity: 1,
         y: 0,
         rotateZ: 0,
-        duration: 0.8, // Reduced duration for snappier feel
+        duration: 0.8,
         stagger: 0.02,
-        ease: 'back.out(1.4)', // More natural easing
+        ease: 'back.out(1.4)',
         scrollTrigger: {
           trigger: heading,
-          start: 'top 85%', // Slightly earlier trigger
-          toggleActions: 'play none none none', // Prevent reverse
-          fastScrollEnd: true // Optimize for fast scrolling
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+          fastScrollEnd: true
         }
       }
     );
 
-    // Contact elements animation
     const contactElements = contactRef.current?.querySelectorAll('.contact-element');
     if (!contactElements?.length) return;
 
@@ -96,7 +90,7 @@ export const Contact = memo(() => {
       contactElements,
       { 
         opacity: 0, 
-        y: 40, // Reduced travel distance
+        y: 40,
         scale: 0.95,
         willChange: 'transform, opacity'
       },
@@ -104,9 +98,9 @@ export const Contact = memo(() => {
         opacity: 1,
         y: 0,
         scale: 1,
-        duration: 0.7, // Faster animation
+        duration: 0.7,
         stagger: 0.2,
-        ease: 'power2.out', // Smoother easing
+        ease: 'power2.out',
         scrollTrigger: {
           trigger: contactRef.current,
           start: 'top 75%',
@@ -116,7 +110,6 @@ export const Contact = memo(() => {
       }
     );
 
-    // Cleanup on unmount
     return () => {
       ScrollTrigger.getAll().forEach(trigger => {
         if (trigger.trigger === heading || trigger.trigger === contactRef.current) {
@@ -139,19 +132,17 @@ export const Contact = memo(() => {
   const handleSubmit = useCallback((e) => {
     e.preventDefault();
     console.log('Form submitted:', formDataRef.current);
-    // Add form submission logic here
-    // Reset form if needed
     formDataRef.current = { name: '', email: '', message: '' };
   }, []);
 
   return (
-    <div className="flex items-center justify-center min-h-screen py-24 px-6">
-      <div className="container mx-auto relative z-10">
+    <div className="flex items-center justify-center min-h-screen py-24 px-6 overflow-x-hidden">
+      <div className="max-w-screen-xl mx-auto relative z-10">
         <h2 ref={headingRef} className="text-6xl md:text-7xl font-bold text-center mb-20 leading-tight tracking-tight">
           {t('contact.title')}
         </h2>
         
-        <div ref={contactRef} className="max-w-6xl mx-auto grid md:grid-cols-5 gap-8 md:gap-6 lg:gap-12">
+        <div ref={contactRef} className="max-w-6xl mx-auto grid md:grid-cols-5 gap-8 md:gap-6 lg:gap-12 overflow-hidden">
           <div className="md:col-span-2 contact-element">
             <div className="relative mb-8">
               <div className="absolute -top-4 -left-4 w-20 h-20 bg-blue-500/20 rounded-full blur-md"></div>
@@ -485,7 +476,6 @@ export const Solutions = React.memo(() => {
   const solutionsRef = useRef(null);
   const headingRef = useRef(null);
 
-  // Memoize solutions dan images
   const solutions = useMemo(() => t('solutions.solutions', { returnObjects: true }), [t]);
   const solutionImages = useMemo(() => [image1, image2], []);
 
@@ -500,11 +490,9 @@ export const Solutions = React.memo(() => {
 
         if (!isMounted) return;
 
-        // Optimasi: Tambahkan willChange
         gsap.set(solutionsRef.current, { willChange: 'transform, opacity' });
         gsap.set(headingRef.current, { willChange: 'transform, opacity' });
 
-        // Heading animations
         const headingElements = headingRef.current?.querySelectorAll('.heading-part');
         gsap.set(headingElements, { opacity: 0, y: 20 });
 
@@ -515,16 +503,14 @@ export const Solutions = React.memo(() => {
             gsap.to(headingElements, {
               opacity: 1,
               y: 0,
-              duration: 0.6, // Kurangi durasi untuk performa
+              duration: 0.6,
               stagger: 0.15,
               ease: 'power3.out',
             });
           },
         });
 
-        // Solution items animations
         const solutionItems = solutionsRef.current?.querySelectorAll('.solution-item');
-
         solutionItems.forEach((item, index) => {
           const isEven = index % 2 === 0;
           const textContent = item.querySelector('.md\\:w-2\\/5 > div');
@@ -546,8 +532,7 @@ export const Solutions = React.memo(() => {
               toggleActions: 'play none none reverse',
             },
           });
-        
-          // Animasi dekoratif
+
           const decorativeElements = item.querySelectorAll('.absolute');
           if (decorativeElements.length) {
             gsap.to(decorativeElements, {
@@ -566,17 +551,16 @@ export const Solutions = React.memo(() => {
 
     loadGSAP();
 
-    // Cleanup
     return () => {
       isMounted = false;
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-      gsap.killTweensOf('*'); // Pastikan semua animasi dibersihkan
+      gsap.killTweensOf('*');
     };
   }, []);
 
   return (
-    <div className="flex items-center justify-center min-h-screen py-16">
-      <div className="container mx-auto px-4 relative z-10">
+    <div className="flex items-center justify-center min-h-screen py-16 overflow-x-hidden">
+      <div className="max-w-screen-xl mx-auto px-4 relative z-10">
         <div ref={headingRef} className="relative mb-16 text-center">
           <div className="heading-part">
             <span className="text-lg md:text-xl uppercase tracking-widest text-gray-400">
@@ -595,7 +579,6 @@ export const Solutions = React.memo(() => {
           <p className="heading-part max-w-xl mx-auto text-gray-300 text-base md:text-lg">
             {t('solutions.heading.description')}
           </p>
-
           <div className="absolute top-1/2 left-1/4 w-4 h-4 bg-blue-500/30 rounded-full blur-sm transform -translate-x-1/2 -translate-y-1/2" />
           <div className="absolute bottom-0 right-1/3 w-3 h-3 bg-purple-500/50 rounded-full blur-sm" />
         </div>
@@ -623,24 +606,27 @@ export const Solutions = React.memo(() => {
                       )}
                     </h3>
                     <p className="text-gray-300 mb-6 leading-relaxed">{solution.description}</p>
-                    <button className="group relative overflow-hidden px-6 py-2 bg-transparent border border-blue-500/40 text-blue-400 rounded-l-lg rounded-r-sm transition-colors hover:bg-blue-500/10">
+                    <NavLink
+                      to={index === 0 ? "/maps" : "/dashboard"}
+                      className="group relative overflow-hidden px-6 py-2 bg-transparent border border-blue-500/40 text-blue-400 rounded-l-lg rounded-r-sm transition-colors hover:bg-blue-500/10"
+                    >
                       <span className="relative z-10 group-hover:tracking-wider transition-all duration-200">
                         {solution.buttonText}
                       </span>
                       <span className="absolute bottom-0 left-0 w-0 h-1 bg-blue-500/40 group-hover:w-full transition-all duration-300" />
-                    </button>
+                    </NavLink>
                   </div>
                 </div>
 
-                <div className={`md:w-3/5 ${index % 2 === 0 ? 'md:-ml-8' : 'md:-mr-8'} relative mt-6 md:mt-0`}>
+                <div className={`md:w-3/5 relative mt-6 md:mt-0 overflow-hidden`}>
                   <div className="relative">
                     <div className={`relative z-10 transform md:translate-y-4 ${index % 2 === 0 ? 'md:translate-x-8' : 'md:-translate-x-8'}`}>
                       <div className="p-1 rounded-xl overflow-hidden">
                         <img
                           src={solutionImages[index]}
                           alt={solution.title}
-                          className="rounded-lg w-full object-cover"
-                          loading="lazy" // Lazy load gambar
+                          className="rounded-lg w-full h-[300px] object-cover"
+                          loading="lazy"
                         />
                       </div>
                     </div>
@@ -665,7 +651,6 @@ export const FAQ = React.memo(() => {
   const headingRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(null);
 
-  // Gunakan useCallback untuk mencegah pembuatan fungsi baru
   const toggleFAQ = useCallback((index) => {
     setActiveIndex((prev) => (prev === index ? null : index));
   }, []);
@@ -673,9 +658,8 @@ export const FAQ = React.memo(() => {
   const faqs = t('faq.questions', { returnObjects: true });
 
   return (
-    <div className="flex items-center justify-center min-h-screen py-24">
-      <div className="container mx-auto px-6 relative z-10">
-        {/* Heading */}
+    <div className="flex items-center justify-center min-h-screen py-24 overflow-x-hidden">
+      <div className="max-w-screen-xl mx-auto px-6 relative z-10">
         <div ref={headingRef} className="relative mb-20">
           <h2 className="text-center">
             <span className="block text-lg text-gray-400 uppercase tracking-wider mb-2">
@@ -693,14 +677,13 @@ export const FAQ = React.memo(() => {
           <div className="absolute bottom-0 right-1/4 w-6 h-6 bg-purple-500/20 rounded-full blur-lg"></div>
         </div>
 
-        {/* Accordion */}
-        <div ref={faqRef} className="max-w-4xl mx-auto relative">
+        <div ref={faqRef} className="max-w-4xl mx-auto relative overflow-hidden">
           <div className="absolute -top-20 -right-20 w-60 h-60 bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
           <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-purple-500/5 rounded-full blur-3xl pointer-events-none"></div>
 
           {faqs.map((faq, index) => (
             <div
-              key={faq.id || index} // Pastikan key unik, idealnya gunakan ID dari data
+              key={faq.id || index}
               className={`faq-item mb-6 relative overflow-hidden transition-shadow duration-300 ${
                 activeIndex === index ? 'shadow-lg shadow-blue-500/5' : ''
               }`}
@@ -710,7 +693,7 @@ export const FAQ = React.memo(() => {
                   activeIndex === index
                     ? 'bg-gray-900/70 border border-blue-900/40'
                     : 'bg-gray-900/40 border border-gray-800/40 hover:bg-gray-900/50'
-                } transition-colors duration-300`} // Ganti transition-all ke transition-colors
+                } transition-colors duration-300`}
                 onClick={() => toggleFAQ(index)}
               >
                 <span className="font-semibold text-xl mr-6">{faq.question}</span>
@@ -746,7 +729,6 @@ export const FAQ = React.memo(() => {
           ))}
         </div>
 
-        {/* Call to Action */}
         <div className="text-center mt-16">
           <p className="text-gray-300 mb-6">{t('faq.cta.text')}</p>
           <a

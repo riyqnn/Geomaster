@@ -67,9 +67,9 @@
   "contact": {
     "title": "Get in Touch",
     "contactInfo": {
-      "address": "Biosecure Innovation Hub, Global City",
-      "phone": "+1 (555) 987-6543",
-      "email": "info@biosecuregis.org"
+      "address": "Biosecure Innovation Hub, East Jakarta",
+      "phone": "+62 819-0123-5679",
+      "email": "BioSecureLand@gmail.com"
     },
     "businessHours": {
       "weekdays": "Monday–Friday: 8AM–5PM",
@@ -102,8 +102,8 @@
         "answer": "Yes, our platform supports APIs and connectors to integrate with governmental, environmental, and health databases."
       },
       {
-        "question": "What kind of support is provided after implementation?",
-        "answer": "We offer 24/7 technical support, regular updates, training for users, and data integration assistance."
+      "question": "What kind of support is provided after implementation?",
+        "answer": "Post-implementation includes routine monitoring, technical support, regular system updates for security and features, and additional development for new requirements."
       }
     ],
     "heading": {

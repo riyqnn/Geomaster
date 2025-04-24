@@ -25,7 +25,7 @@ function Dashboard() {
 
   const DATA_URLS = {
     airQuality: 'https://cdn.jsdelivr.net/gh/riyqnn/geojson-data@main/data_udara.json',
-    waste: 'https://cdn.jsdelivr.net/gh/riyqnn/geojson-data@main/sampah1.json'
+    waste: 'https://cdn.jsdelivr.net/gh/riyqnn/geojson-data@main/sampah2.json'
   };
 
   const regionKeys = {
